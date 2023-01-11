@@ -6,7 +6,6 @@ cd "$(dirname "$0")"
 
 PROFILE=""
 STACK_NAME=""
-TEMPLATE_FILE="../output/template.yml"
 
 help() {
   echo "need your profile after -p"
@@ -24,18 +23,17 @@ done
 
 # CloudFormationファイルを出力
 echo "----------synthesize----------"
-npx cdk synth ${STACK_NAME} > ${TEMPLATE_FILE}
+yarn cdk synth ${STACK_NAME}
 # globalのcdkだとうまくいかない.
 # cdk synth > template.yml
 
 # CDKが利用するためのリソースをプロビジョニング
 echo "----------bootstarap----------"
-npx cdk bootstrap \
+yarn cdk bootstrap \
     --profile ${PROFILE} \
-    --template ${TEMPLATE_FILE}
     # --bootstrap-bucket-name "test" \
 
 # デプロイ
 echo "----------deploy----------"
-npx cdk deploy ${STACK_NAME} \
+yarn cdk deploy ${STACK_NAME} \
     --profile ${PROFILE}
