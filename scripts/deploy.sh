@@ -27,11 +27,6 @@ yarn cdk synth ${STACK_NAME}
 # globalのcdkだとうまくいかない.
 # cdk synth > template.yml
 
-# CDKが利用するためのリソースをプロビジョニング
-echo "----------bootstarap----------"
-yarn cdk bootstrap \
-    --profile ${PROFILE} \
-    # --bootstrap-bucket-name "test" \
 
 # デプロイ
 echo "----------deploy----------"
